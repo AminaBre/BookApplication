@@ -18,7 +18,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "node src/server/server.js",
+    "start": "parcel src/index.html",
     "client": "parcel src/index.html"
   },
   "eslintConfig": {
