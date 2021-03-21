@@ -33913,13 +33913,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Application() {
   return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactRouter.Switch, null, _react.default.createElement(_reactRouter.Route, {
     path: "/books"
-  }, _react.default.createElement("h1", null, "List alle b\xF8ker")), _react.default.createElement(_reactRouter.Route, {
+  }, _react.default.createElement("h1", null, "List alle b\xF8ker i butikken")), _react.default.createElement(_reactRouter.Route, {
     path: "/create"
-  }, _react.default.createElement("h1", null, "Lag nye b\xF8ker")), _react.default.createElement(_reactRouter.Route, {
+  }, _react.default.createElement("h1", null, "Amina, Lag nye b\xF8ker")), _react.default.createElement(_reactRouter.Route, {
     path: "/edit"
   }, _react.default.createElement("h1", null, "Rediger eksisterende bok")), _react.default.createElement(_reactRouter.Route, {
     path: "/"
-  }, _react.default.createElement("h1", null, "Bok-applikasjon hjemmeside"), _react.default.createElement("ul", null, _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.Link, {
+  }, _react.default.createElement("h1", null, "Kristiania bokbutikk hjemmeside"), _react.default.createElement("ul", null, _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/books"
   }, "List alle b\xF8ker")), _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/create"
@@ -33955,7 +33955,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49523" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49971" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -17,8 +17,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "nodemon src/server/server.js",
-    "client": "parcel src/index.html"
+    "start": "concurrently \" npm run server\" \" npm run parcel\"",
+    "server": "nodemon --watch server src/server/server.js",
+    "parcel": "parcel src/index.html"
   },
   "eslintConfig": {
     "extends": [

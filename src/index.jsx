@@ -8,16 +8,16 @@ function Application() {
     return <BrowserRouter>
         <Switch>
             <Route path={"/books"}>
-            <h1>List alle bøker</h1>
+            <h1>List alle bøker i butikken</h1>
         </Route>
         <Route path={"/create"}>
-            <h1>Lag nye bøker</h1>
+            <h1>Amina, Lag nye bøker</h1>
         </Route>
         <Route path={"/edit"}>
             <h1>Rediger eksisterende bok</h1>
         </Route>
         <Route path={"/"}>
-            <h1>Bok-applikasjon hjemmeside</h1>
+            <h1>Kristiania bokbutikk hjemmeside</h1>
             <ul>
                 <li><Link to={"/books"}>List alle bøker</Link></li>
                 <li><Link to={"/create"}>Lag nye bøker</Link></li>
