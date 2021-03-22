@@ -2,16 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter, Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
+import { BookListPage } from "./BookListPage";
 
 
 function Application() {
     return <BrowserRouter>
         <Switch>
             <Route path={"/books"}>
-            <h1>List alle bøker i butikken</h1>
+            <BookListPage />
         </Route>
         <Route path={"/create"}>
-            <h1>Amina, Lag nye bøker</h1>
+            <h1>Lag nye bøker</h1>
         </Route>
         <Route path={"/edit"}>
             <h1>Rediger eksisterende bok</h1>
@@ -19,7 +20,7 @@ function Application() {
         <Route path={"/"}>
             <h1>Kristiania bokbutikk hjemmeside</h1>
             <ul>
-                <li><Link to={"/books"}>List alle bøker</Link></li>
+                <li><Link to={"/books"}>Liste over alle bøker</Link></li>
                 <li><Link to={"/create"}>Lag nye bøker</Link></li>
             </ul>
         </Route>

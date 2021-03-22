@@ -33897,7 +33897,69 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"../node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../node_modules/react/index.js","history":"../node_modules/history/esm/history.js","prop-types":"../node_modules/prop-types/index.js","tiny-warning":"../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"index.jsx":[function(require,module,exports) {
+},{"react-router":"../node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../node_modules/react/index.js","history":"../node_modules/history/esm/history.js","prop-types":"../node_modules/prop-types/index.js","tiny-warning":"../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"LoadingView.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.LoadingView = LoadingView;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function LoadingView() {
+  return _react.default.createElement("div", null, "... Laster inn...");
+}
+},{"react":"../node_modules/react/index.js"}],"BookListPage.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.BookListPage = BookListPage;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _LoadingView = require("./LoadingView.jsx");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function BookListPage() {
+  const [books, setBook] = (0, _react.useState)();
+  const [error, setError] = (0, _react.useState)();
+
+  async function loadBooks() {
+    try {
+      const res = await fetch("/api/books");
+
+      if (!res.ok) {
+        throw new Error(`Noe gikk galt... ${res.url} : ${res.statusText}`);
+      }
+
+      const json = await res.json();
+      setBooks(json);
+    } catch (e) {
+      setError(e);
+    }
+  }
+
+  (0, _react.useEffect)(loadBooks, []);
+
+  if (error) {
+    return _react.default.createElement("div", null, "Noe har g\xE5tt galt...");
+  }
+
+  if (!books) {
+    return _react.default.createElement(_LoadingView.LoadingView, null);
+  }
+
+  return _react.default.createElement("h1", null, "Liste over alle b\xF8ker");
+}
+},{"react":"../node_modules/react/index.js","./LoadingView.jsx":"LoadingView.jsx"}],"index.jsx":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -33908,26 +33970,28 @@ var _reactRouterDom = require("react-router-dom");
 
 var _reactRouter = require("react-router");
 
+var _BookListPage = require("./BookListPage");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Application() {
   return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactRouter.Switch, null, _react.default.createElement(_reactRouter.Route, {
     path: "/books"
-  }, _react.default.createElement("h1", null, "List alle b\xF8ker i butikken")), _react.default.createElement(_reactRouter.Route, {
+  }, _react.default.createElement(_BookListPage.BookListPage, null)), _react.default.createElement(_reactRouter.Route, {
     path: "/create"
-  }, _react.default.createElement("h1", null, "Amina, Lag nye b\xF8ker")), _react.default.createElement(_reactRouter.Route, {
+  }, _react.default.createElement("h1", null, "Lag nye b\xF8ker")), _react.default.createElement(_reactRouter.Route, {
     path: "/edit"
   }, _react.default.createElement("h1", null, "Rediger eksisterende bok")), _react.default.createElement(_reactRouter.Route, {
     path: "/"
   }, _react.default.createElement("h1", null, "Kristiania bokbutikk hjemmeside"), _react.default.createElement("ul", null, _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/books"
-  }, "List alle b\xF8ker")), _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.Link, {
+  }, "Liste over alle b\xF8ker")), _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/create"
   }, "Lag nye b\xF8ker")))), _react.default.createElement(_reactRouter.Route, null, "Siden du ser etter eksisterer ikke")));
 }
 
 _reactDom.default.render(_react.default.createElement(Application, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-router":"../node_modules/react-router/esm/react-router.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-router":"../node_modules/react-router/esm/react-router.js","./BookListPage":"BookListPage.jsx"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -33955,7 +34019,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49971" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61914" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
