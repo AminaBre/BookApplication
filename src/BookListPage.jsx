@@ -23,14 +23,19 @@ export function BookListPage(){
     useEffect(loadBooks, []);
 
     if(error) {
-        return <div>Noe har gått galt...</div>
+        return <div>Noe har gått galt...</div>;
     }
 
     if(!books) {
-        return <LoadingView/>
+        return <LoadingView/>;
     }
 
 
-    return <h1>Liste over alle bøker</h1>
+    return <>
+    <h1>Liste over alle bøker</h1>
+    {books.map(({id, title}) => (
+        <li key={id}>{title}</li>
+    ))};
+    </>;
 }
 

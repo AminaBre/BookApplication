@@ -33957,9 +33957,70 @@ function BookListPage() {
     return _react.default.createElement(_LoadingView.LoadingView, null);
   }
 
-  return _react.default.createElement("h1", null, "Liste over alle b\xF8ker");
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, "Liste over alle b\xF8ker"), books.map(({
+    id,
+    title
+  }) => _react.default.createElement("li", {
+    key: id
+  }, title)), ";");
 }
-},{"react":"../node_modules/react/index.js","./LoadingView.jsx":"LoadingView.jsx"}],"index.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./LoadingView.jsx":"LoadingView.jsx"}],"CreateBookPage.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CreateBookPage = CreateBookPage;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function CreateBookPage() {
+  const [title, setTitle] = (0, _react.useState)("");
+  const [author, setAuthor] = (0, _react.useState)("");
+  const [year, setYear] = (0, _react.useState)("");
+
+  async function submit(e) {
+    e.preventDefault();
+    console.log("Submitting", {
+      title,
+      author,
+      year
+    });
+    await fetch("/api/books", {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        author,
+        year
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
+
+  ;
+  return _react.default.createElement("form", {
+    onSubmit: submit
+  }, _react.default.createElement("h1", null, "Lag ny bok"), _react.default.createElement("div", null, _react.default.createElement("label", null, "Tittel:", _react.default.createElement("input", {
+    type: "text",
+    value: title,
+    onChange: e => setTitle(e.target.value)
+  }))), _react.default.createElement("div", null, _react.default.createElement("label", null, "Forfatter:", _react.default.createElement("input", {
+    type: "text",
+    value: author,
+    onChange: e => setAuthor(e.target.value)
+  }))), _react.default.createElement("div", null, _react.default.createElement("label", null, "\xC5r:", _react.default.createElement("input", {
+    type: "number",
+    value: year,
+    onChange: e => setYear(e.target.value)
+  }))), _react.default.createElement("button", null, "Submit"));
+}
+},{"react":"../node_modules/react/index.js"}],"index.jsx":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -33972,14 +34033,18 @@ var _reactRouter = require("react-router");
 
 var _BookListPage = require("./BookListPage");
 
+var _CreateBookPage = require("./CreateBookPage");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Application() {
-  return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactRouter.Switch, null, _react.default.createElement(_reactRouter.Route, {
+  return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement("nav", null, _react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, "Home")), _react.default.createElement("main", null, _react.default.createElement(_reactRouter.Switch, null, _react.default.createElement(_reactRouter.Route, {
     path: "/books"
   }, _react.default.createElement(_BookListPage.BookListPage, null)), _react.default.createElement(_reactRouter.Route, {
     path: "/create"
-  }, _react.default.createElement("h1", null, "Lag nye b\xF8ker")), _react.default.createElement(_reactRouter.Route, {
+  }, _react.default.createElement(_CreateBookPage.CreateBookPage, null)), _react.default.createElement(_reactRouter.Route, {
     path: "/edit"
   }, _react.default.createElement("h1", null, "Rediger eksisterende bok")), _react.default.createElement(_reactRouter.Route, {
     path: "/"
@@ -33987,11 +34052,11 @@ function Application() {
     to: "/books"
   }, "Liste over alle b\xF8ker")), _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/create"
-  }, "Lag nye b\xF8ker")))), _react.default.createElement(_reactRouter.Route, null, "Siden du ser etter eksisterer ikke")));
+  }, "Lag nye b\xF8ker")))), _react.default.createElement(_reactRouter.Route, null, "Siden du ser etter eksisterer ikke"))));
 }
 
 _reactDom.default.render(_react.default.createElement(Application, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-router":"../node_modules/react-router/esm/react-router.js","./BookListPage":"BookListPage.jsx"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-router":"../node_modules/react-router/esm/react-router.js","./BookListPage":"BookListPage.jsx","./CreateBookPage":"CreateBookPage.jsx"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -34019,7 +34084,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61914" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63251" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -3,16 +3,21 @@ import ReactDOM from "react-dom";
 import {BrowserRouter, Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import { BookListPage } from "./BookListPage";
+import { CreateBookPage } from "./CreateBookPage";
 
 
 function Application() {
     return <BrowserRouter>
+    <nav>
+        <Link to={"/"}>Home</Link>
+    </nav>
+    <main>
         <Switch>
             <Route path={"/books"}>
-            <BookListPage />
+            <BookListPage/>
         </Route>
         <Route path={"/create"}>
-            <h1>Lag nye bøker</h1>
+            <CreateBookPage/>
         </Route>
         <Route path={"/edit"}>
             <h1>Rediger eksisterende bok</h1>
@@ -28,6 +33,7 @@ function Application() {
             Siden du ser etter eksisterer ikke
         </Route>
     </Switch>
+    </main>
     </BrowserRouter>;
 }
 
