@@ -41,6 +41,6 @@ app.use((req, res, next) => {
     res.sendFile(path.resolve(__dirname, "..", "..", "dist", "index.html"));
 });
 
-app.listen(8080, () => {
-    console.log("Start on http://localhost:8080");
+app.listen(3000, () => {
+    console.log("Start on http://localhost:3000");
 });
