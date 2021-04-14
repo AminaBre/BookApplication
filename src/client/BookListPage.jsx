@@ -7,11 +7,13 @@ export function BookListPage(){
 
     async function loadBooks() {
         try {
+            //kaller på API'et fra books med fetch fra server-siden
             const res = await fetch("/api/books");
             if(!res.ok){
                 throw new Error(`Noe gikk galt... ${res.url} : ${res.statusText}`);
             }
-
+            
+            //parser json og setter state lenger opp
         const json = await res.json();
         setBooks(json);
     } catch (e) {
@@ -26,11 +28,12 @@ export function BookListPage(){
         return <div>Noe har gått galt...</div>;
     }
 
+    //Hvis den ikke finner noen bøker
     if(!books) {
         return <LoadingView/>;
     }
 
-
+    //Lister opp alle bøkene
     return <>
     <h1>Liste over alle bøker</h1>
     {books.map(({id, title,}) => (

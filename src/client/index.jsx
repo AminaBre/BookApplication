@@ -13,16 +13,15 @@ function Application() {
     </nav>
     <main>
         <Switch>
-            <Route path={"/books"}>
-            <BookListPage/>
-        </Route>
+            <Route path={"/books"} component={BookListPage} />
         <Route path={"/create"}>
             <CreateBookPage/>
         </Route>
         <Route path={"/edit"}>
             <h1>Rediger eksisterende bok</h1>
         </Route>
-        <Route path={"/"}>
+        {/* Forskjell på exact path og path: Hvis du skriver noe annet enn path'en vil du bare komme til "siden du ser etter eksisterer ikke"*/}
+        <Route exact path={"/"}>
             <h1>Kristiania bokbutikk hjemmeside</h1>
             <ul>
                 <li><Link to={"/books"}>Liste over alle bøker</Link></li>

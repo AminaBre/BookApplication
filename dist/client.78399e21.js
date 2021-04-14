@@ -33934,11 +33934,13 @@ function BookListPage() {
 
   async function loadBooks() {
     try {
+      //kaller på API'et fra books med fetch fra server-siden
       const res = await fetch("/api/books");
 
       if (!res.ok) {
         throw new Error(`Noe gikk galt... ${res.url} : ${res.statusText}`);
-      }
+      } //parser json og setter state lenger opp
+
 
       const json = await res.json();
       setBooks(json);
@@ -33951,11 +33953,13 @@ function BookListPage() {
 
   if (error) {
     return _react.default.createElement("div", null, "Noe har g\xE5tt galt...");
-  }
+  } //Hvis den ikke finner noen bøker
+
 
   if (!books) {
     return _react.default.createElement(_LoadingView.LoadingView, null);
-  }
+  } //Lister opp alle bøkene
+
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, "Liste over alle b\xF8ker"), books.map(({
     id,
@@ -34041,12 +34045,14 @@ function Application() {
   return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement("nav", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, "Home")), _react.default.createElement("main", null, _react.default.createElement(_reactRouter.Switch, null, _react.default.createElement(_reactRouter.Route, {
-    path: "/books"
-  }, _react.default.createElement(_BookListPage.BookListPage, null)), _react.default.createElement(_reactRouter.Route, {
+    path: "/books",
+    component: _BookListPage.BookListPage
+  }), _react.default.createElement(_reactRouter.Route, {
     path: "/create"
   }, _react.default.createElement(_CreateBookPage.CreateBookPage, null)), _react.default.createElement(_reactRouter.Route, {
     path: "/edit"
   }, _react.default.createElement("h1", null, "Rediger eksisterende bok")), _react.default.createElement(_reactRouter.Route, {
+    exact: true,
     path: "/"
   }, _react.default.createElement("h1", null, "Kristiania bokbutikk hjemmeside"), _react.default.createElement("ul", null, _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.Link, {
     to: "/books"
@@ -34084,7 +34090,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54296" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51380" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
